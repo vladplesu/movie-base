@@ -43,7 +43,6 @@ const DiscoverWrapper = () => {
           <IconButton
             classes={{ root: classes.iconBtnRoot }}
             color="primary"
-            s
             onClick={handleCloseGenreWrapper}
           >
             <ArrowBackIosIcon />

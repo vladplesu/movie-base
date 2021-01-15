@@ -6,7 +6,7 @@ import data from './data';
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [menuValue, setMenuValue] = useState(2);
+  const [menuValue, setMenuValue] = useState(0);
   const [showGenre, setShowGenre] = useState(false);
   const [allMoviesGenre, setAllMoviesGenre] = useState();
   const [moviesByGenre, setMoviesByGenre] = useState([]);
