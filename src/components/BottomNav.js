@@ -6,7 +6,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import TheatersOutlinedIcon from '@material-ui/icons/TheatersOutlined';
 import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
 
-import { useGlobalContext } from './context';
+import { useGlobalContext } from '../context';
 
 const useStyles = makeStyles(() => ({
   root: {

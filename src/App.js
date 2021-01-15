@@ -4,14 +4,11 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
 import Navigation from './Navigation';
-import BottomNav from './BottomNav';
-import CategorySection from './components/CategorySection';
+import BottomNav from './components/BottomNav';
+import DiscoverWrapper from './containers/DiscoverWrapper';
 import TvShowCard from './components/TvShowCard';
-import SearchBar from './components/SearchBar';
 
 import { useGlobalContext } from './context';
-
-import data from './data';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const { menuValue } = useGlobalContext();
+  const { menuValue, tvShowsWatchlist, moviesWatchlist } = useGlobalContext();
 
   return (
     <Box>
@@ -31,19 +28,19 @@ function App() {
       </Navigation>
       {menuValue === 0 && (
         <Container className={classes.container}>
-          {data.movies.map((movie) => (
+          {tvShowsWatchlist.map((movie) => (
             <TvShowCard key={movie.title.title} movie={movie} />
           ))}
         </Container>
       )}
-      {menuValue === 2 && (
+      {menuValue === 1 && (
         <Container className={classes.container}>
-          <SearchBar />
-          {data.genres.map((genre) => (
-            <CategorySection key={genre.description} genre={genre} />
+          {moviesWatchlist.map((movie) => (
+            <TvShowCard key={movie.title.title} movie={movie} />
           ))}
         </Container>
       )}
+      {menuValue === 2 && <DiscoverWrapper />}
     </Box>
   );
 }

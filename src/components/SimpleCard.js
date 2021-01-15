@@ -38,11 +38,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieCard = ({ movie }) => {
+const SimpleCard = ({ movie }) => {
   const { title } = movie;
   const classes = useStyles();
-  const { isInWatchList, addToWatchList } = useGlobalContext();
-  const isMovieAdded = isInWatchList(movie.id);
+  const { isInWatchList, tvShowsWatchlist, moviesWatchlist, addToWatchList } = useGlobalContext();
+  const isMovieAdded =
+    title.titleType.toLowerCase() === 'movie'
+      ? isInWatchList(moviesWatchlist, movie.id)
+      : isInWatchList(tvShowsWatchlist, movie.id);
 
   return (
     <Card classes={{ root: classes.cardRoot }} component="article" raised>
@@ -63,7 +66,7 @@ const MovieCard = ({ movie }) => {
   );
 };
 
-MovieCard.propTypes = {
+SimpleCard.propTypes = {
   movie: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.shape({
@@ -71,8 +74,9 @@ MovieCard.propTypes = {
         url: PropTypes.string,
       }),
       title: PropTypes.string,
+      titleType: PropTypes.string,
     }),
   }).isRequired,
 };
 
-export default MovieCard;
+export default SimpleCard;

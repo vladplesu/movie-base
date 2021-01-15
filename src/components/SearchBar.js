@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(4),
     border: `1px solid ${theme.palette.secondary.main}`,
     display: 'flex',
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     width: '100%',
   },
   searchIcon: {
