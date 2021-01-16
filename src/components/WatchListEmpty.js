@@ -14,7 +14,7 @@ const WatchListEmpty = ({ message }) => {
       alignItems="center"
       justifyContent="center"
       textAlign="center"
-      height="100vh"
+      marginTop="1rem"
     >
       <Typography variant="body1">Your watch list is empty!</Typography>
       <Typography variant="caption" color="textSecondary" gutterBottom>

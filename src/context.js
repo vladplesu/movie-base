@@ -54,6 +54,11 @@ const AppProvider = ({ children }) => {
     setShowGenre(false);
   };
 
+  const setWatchLists = (watchListData) => {
+    setTvShowsWatchlist(watchListData.tvShowsWatchlist);
+    setMoviesWatchlist(watchListData.moviesWatchlist);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -68,6 +73,7 @@ const AppProvider = ({ children }) => {
         addToWatchList,
         handleShowGenreWrapper,
         handleCloseGenreWrapper,
+        setWatchLists,
       }}
     >
       {children}

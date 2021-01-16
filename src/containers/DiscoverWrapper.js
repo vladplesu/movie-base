@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(-1),
     marginLeft: theme.spacing(-2),
     marginRight: theme.spacing(-2),
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
     position: 'relative',
   },
   iconBtnRoot: {
