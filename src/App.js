@@ -35,8 +35,8 @@ function App() {
       <Navigation>
         <BottomNav />
       </Navigation>
-      {menuValue === 0 && <WatchListWrapper whatchList={tvShowsWatchlist} type="tv shows" />}
-      {menuValue === 1 && <WatchListWrapper whatchList={moviesWatchlist} type="movies" />}
+      {menuValue === 0 && <WatchListWrapper watchList={tvShowsWatchlist} type="tv shows" />}
+      {menuValue === 1 && <WatchListWrapper watchList={moviesWatchlist} type="movies" />}
       {menuValue === 2 && <DiscoverWrapper />}
     </Box>
   );

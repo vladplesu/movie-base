@@ -10,12 +10,12 @@ import { useGlobalContext } from '../context';
 
 const useStyles = makeStyles((theme) => ({
   cardRoot: {
-    flex: '0 0 110px',
+    flex: '0 0 130px',
     position: 'relative',
     marginRight: theme.spacing(1),
   },
   cover: {
-    height: '150px',
+    height: '180px',
   },
   iconBtnRoot: {
     position: 'absolute',

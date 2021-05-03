@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Container, Typography } from '@material-ui/core';
+import { Box, Button, Container, Typography } from '@material-ui/core';
+import { AddBox } from '@material-ui/icons';
 
-import TvShowCard from '../components/TvShowCard';
+import SimpleCard from '../components/SimpleCard';
 import WatchListEmpty from '../components/WatchListEmpty';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,29 +23,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const WatchListWrapper = ({ whatchList, type }) => {
+const WatchListWrapper = ({ watchList, type }) => {
   const classes = useStyles();
+
+  if (watchList.length === 0) {
+    return <WatchListEmpty message={`Add ${type} you have watched.`} />;
+  }
 
   return (
     <Container className={classes.container}>
       <Box className={classes.header} display="flex" justifyContent="center" boxShadow={2}>
-        <Typography color="primary">{type}</Typography>
+        <Typography color="primary">Watchlist</Typography>
       </Box>
-      {whatchList.length === 0 ? (
-        <WatchListEmpty message={`Add ${type} you want to watch.`} />
-      ) : (
-        <Box marginTop={1}>
-          {whatchList.map((movie) => (
-            <TvShowCard key={movie.title.title} movie={movie} />
-          ))}
-        </Box>
-      )}
+      <Box display="flex" flexDirection="column">
+        {watchList.map((movie) => (
+          <Box mt={1} mb={1}>
+            <SimpleCard key={movie.title.title} movie={movie} />
+          </Box>
+        ))}
+        <Button variant="outlined" color="primary">
+          <Box
+            display="flex"
+            height="160px"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <AddBox color="primary" fontSize="large" />
+            <Typography>Add more</Typography>
+          </Box>
+        </Button>
+      </Box>
     </Container>
   );
 };
 
 WatchListWrapper.propTypes = {
-  whatchList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  watchList: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   type: PropTypes.string.isRequired,
 };
 

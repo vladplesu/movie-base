@@ -16,7 +16,7 @@ const WatchListEmpty = ({ message }) => {
       textAlign="center"
       marginTop="1rem"
     >
-      <Typography variant="body1">Your watch list is empty!</Typography>
+      <Typography variant="body1">Your watchlist is empty!</Typography>
       <Typography variant="caption" color="textSecondary" gutterBottom>
         {message}
       </Typography>
