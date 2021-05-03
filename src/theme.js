@@ -5,18 +5,19 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#83CFDF',
+      main: '#8190EB',
+      dark: '#5C5C90',
     },
     secondary: {
-      main: '#708ED2',
+      main: '#81D4FC',
     },
     background: {
-      default: '#272532',
-      paper: '#373B69',
+      default: '#1E1F33',
+      paper: '#292847',
     },
-    divider: '#708ED2',
+    divider: '#403F6B',
     text: {
-      primary: '#EBE5E2',
+      primary: '#FFFFFF',
       secondary: grey[400],
     },
     success: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Divider, Typography } from '@material-ui/core';
 
 import SimpleCard from './SimpleCard';
 import data from '../data';
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(-2),
   },
   btnRoot: {
-    paddingBottom: 0,
-    textTransform: 'none',
     fontSize: '0.75rem',
+    paddingBottom: 0,
+    paddingRight: 0,
   },
 }));
 
@@ -33,23 +33,24 @@ const GenreSection = ({ genre }) => {
   return (
     <section className={classes.root}>
       <Box display="flex" alignItems="flex-end" justifyContent="space-between">
-        <Typography component="h2" color="primary">
+        <Typography component="h2" color="secondary" variant="button">
           {description}
         </Typography>
         <Button
           classes={{ root: classes.btnRoot }}
-          color="secondary"
+          color="primary"
           disableRipple
           onClick={() => handleShowGenreWrapper(description)}
         >
           Show more
         </Button>
       </Box>
-      <Box display="flex" overflow="auto">
+      <Box display="flex" overflow="auto" mb={1}>
         {filteredMovies.map((movie) => (
           <SimpleCard key={movie.title.title} movie={movie} />
         ))}
       </Box>
+      <Divider classes={{ root: classes.divider }} />
     </section>
   );
 };

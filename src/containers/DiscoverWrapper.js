@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Container, IconButton, Typography } from '@material-ui/core';
+import { Box, Container, IconButton } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import GenreSection from '../components/GenreSection';
@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme) => ({
 
 const DiscoverWrapper = () => {
   const classes = useStyles();
-  const { showGenre, allMoviesGenre, handleCloseGenreWrapper } = useGlobalContext();
+  const { showGenre, handleCloseGenreWrapper } = useGlobalContext();
 
   return (
     <Container className={classes.container}>
-      <Box className={classes.header} display="flex" justifyContent="center">
-        {showGenre && (
+      {showGenre && (
+        <Box className={classes.header} display="flex" justifyContent="center">
           <IconButton
             classes={{ root: classes.iconBtnRoot }}
             color="primary"
@@ -47,9 +47,8 @@ const DiscoverWrapper = () => {
           >
             <ArrowBackIosIcon />
           </IconButton>
-        )}
-        <Typography color="primary">{showGenre ? allMoviesGenre : 'all genres'}</Typography>
-      </Box>
+        </Box>
+      )}
       <SearchBar />
       {!showGenre &&
         data.genres.map((genre) => <GenreSection key={genre.description} genre={genre} />)}

@@ -6,12 +6,11 @@ import SearchIcon from '@material-ui/icons/Search';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
-    backgroundColor: fade(theme.palette.secondary.main, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, 0.25),
+      backgroundColor: fade(theme.palette.primary.main, 0.1),
     },
     borderRadius: theme.spacing(4),
-    border: `1px solid ${theme.palette.secondary.main}`,
+    border: `1px solid ${theme.palette.divider}`,
     display: 'flex',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -31,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     width: '100%',
+    '&::placeholder': {
+      color: theme.palette.primary.main,
+    },
   },
 }));
 
@@ -39,7 +41,7 @@ const SearchBar = () => {
   return (
     <div className={classes.root}>
       <div className={classes.searchIcon}>
-        <SearchIcon color="secondary" />
+        <SearchIcon color="primary" />
       </div>
       <InputBase
         placeholder="Search..."
