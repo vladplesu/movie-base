@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withWidth from '@material-ui/core/withWidth';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  withWidth,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import Typography from '@material-ui/core/Typography';
+import { NavigateNext as NavigateNextIcon, StarRate } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,17 +29,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   rating: {
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(0.75),
-    minWidth: '30px',
-    borderBottomLeftRadius: '4px',
-    borderBottomRightRadius: '4px',
-    color: theme.palette.common.white,
-    display: 'flex',
-    alignItems: 'stretch',
-    fontSize: '1rem',
-    alignSelf: 'flex-start',
-    marginTop: theme.spacing(-1.25),
+    color: theme.palette.warning.main,
   },
   ratingGreat: {
     color: theme.palette.success.main,
@@ -47,16 +40,12 @@ const useStyles = makeStyles((theme) => ({
   ratingLow: {
     color: theme.palette.error.main,
   },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
   title: {
-    fontSize: '1.25rem',
     marginRight: theme.spacing(1.25),
   },
   body: {
     display: '-webkit-box',
+    fontSize: '0.75rem',
     lineHeight: '1.25',
     marginTop: '0.35rem',
   },
@@ -67,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TvShowCard(props) {
   const { movie, width } = props;
-  const { title, ratings, plotOutline } = movie;
+  const { title, ratings, plotOutline, genres } = movie;
   const classes = useStyles();
 
   let ratingClass;
@@ -79,26 +68,34 @@ function TvShowCard(props) {
     ratingClass = classes.ratingGreat;
   }
 
+  let release = `${title.seriesStartYear} - ${title.seriesEndYear}`;
+  if (title.titleType === 'movie') {
+    release = `${title.year}`;
+  }
+
   return (
     <Card className={classes.root} raised>
       <CardMedia className={classes.cover} image={title.image.url} title={title.title} />
       <CardContent className={classes.content}>
-        <div className={classes.header}>
-          <div>
-            <Typography className={classes.title} component="h5" variant="h5" color="primary">
-              {title.title}
-            </Typography>
-            <Typography
-              variant="caption"
-              color="textSecondary"
-            >{`(${title.seriesStartYear} - ${title.seriesEndYear})`}</Typography>
-          </div>
-          <div className={classes.rating}>
+        <Box display="flex" flexDirection="column">
+          <Box display="flex" alignItems="center" className={classes.rating}>
+            <StarRate fontSize="small" />
             <Typography className={ratingClass} variant="caption">
               {ratings.rating}
             </Typography>
-          </div>
-        </div>
+          </Box>
+          <Box display="flex" flexWrap="wrap" alignItems="flex-end">
+            <Typography className={classes.title} component="h3" color="secondary">
+              {title.title}
+            </Typography>
+            <Typography variant="caption" color="textSecondary">
+              {release}
+            </Typography>
+          </Box>
+          <Typography variant="caption" color="textSecondary">
+            {genres.join(', ')}
+          </Typography>
+        </Box>
         <Typography className={classes.body} variant="body2" align="justify">
           {`${plotOutline.text.substring(0, 60)}...`}
         </Typography>
@@ -123,6 +120,8 @@ TvShowCard.propTypes = {
       seriesEndYear: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       seriesStartYear: PropTypes.number,
       title: PropTypes.string,
+      year: PropTypes.number,
+      titleType: PropTypes.string,
     }),
     ratings: PropTypes.shape({
       rating: PropTypes.number,

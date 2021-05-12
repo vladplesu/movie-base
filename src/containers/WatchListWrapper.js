@@ -37,8 +37,8 @@ const WatchListWrapper = ({ watchList, type }) => {
       </Box>
       <Box display="flex" flexDirection="column">
         {watchList.map((movie) => (
-          <Box mt={1} mb={1}>
-            <SimpleCard key={movie.title.title} movie={movie} />
+          <Box mt={1} mb={1} key={movie.title.title}>
+            <SimpleCard movie={movie} />
           </Box>
         ))}
         <Button variant="outlined" color="primary">
